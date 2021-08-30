@@ -7,7 +7,7 @@ Z = MAX_PIXEL_VALUE/len(CHAR)
 
 def get_pixel_matrix(path):
     og_img = Image.open(path)
-    img = og_img.resize((315, (int(315/og_img.width)+1)*og_img.height))
+    img = og_img.resize((315, 170))
     pixels = list(img.getdata())
     return [pixels[i: i+img.width]for i in range(0, len(pixels), img.width)]
 
@@ -36,8 +36,9 @@ def print_ascii(ascii_matrix):
         print()
 
 def main():
-    path = input("Enter the path of your file: ")
-    assert os.path.exists(path), "I did not find the file at, "+str(path)      
+    #path = input("Enter the path of your file: ")
+    #assert os.path.exists(path), "I did not find the file at, "+str(path)   
+    path = 'test.jpg'   
     pixel_matrix = get_pixel_matrix(path)
     brightness_matrix = get_brightness_matrix(pixel_matrix)
     ascii_matrix = get_ascii_matrix(brightness_matrix)
