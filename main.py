@@ -6,7 +6,8 @@ MAX_PIXEL_VALUE = 255
 Z = MAX_PIXEL_VALUE/len(CHAR)
 
 def get_pixel_matrix(path):
-    img = Image.open(path)
+    og_img = Image.open(path)
+    img = og_img.resize((315, 315))
     pixels = list(img.getdata())
     return [pixels[i: i+img.width]for i in range(0, len(pixels), img.width)]
 
