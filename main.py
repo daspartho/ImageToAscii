@@ -36,9 +36,8 @@ def print_ascii(ascii_matrix):
         print()
 
 def main():
-    #path = input("Enter the path of your file: ")
-    #assert os.path.exists(path), "I did not find the file at, "+str(path)   
-    path = 'test.jpg'   
+    path = input("Enter the path of your file: ")
+    assert os.path.exists(path), "I did not find the file at, "+str(path)
     pixel_matrix = get_pixel_matrix(path)
     brightness_matrix = get_brightness_matrix(pixel_matrix)
     ascii_matrix = get_ascii_matrix(brightness_matrix)
