@@ -3,7 +3,6 @@ import os
 
 CHAR="`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 MAX_PIXEL_VALUE = 255
-Z = MAX_PIXEL_VALUE/len(CHAR)
 
 def get_pixel_matrix(path):
     og_img = Image.open(path)
@@ -25,7 +24,7 @@ def get_ascii_matrix(brightness_matrix):
     for i in brightness_matrix:
         ascii_row=[]
         for j in i:
-            ascii_row.append(CHAR[round(j/Z)-1])
+            ascii_row.append(CHAR[round(j/(MAX_PIXEL_VALUE/len(CHAR)))-1])
         ascii_matrix.append(ascii_row)
     return ascii_matrix
 
