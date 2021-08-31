@@ -19,12 +19,23 @@ def get_brightness_matrix(pixel_matrix):
         brightness_matrix.append(brightness_row)
     return brightness_matrix
 
+def normalize_brightness_matrix(brightness_matrix):
+    normalized_brightness_matrix=[]
+    max_pixel = max(map(max, brightness_matrix))
+    min_pixel = min(map(min, brightness_matrix))
+    for i in brightness_matrix:
+        normalized_brightness_row=[]
+        for j in i:
+            normalized_brightness_row.append(((j-min_pixel)/(max_pixel-min_pixel))*MAX_PIXEL_VALUE)
+        normalized_brightness_matrix.append(normalized_brightness_row)
+    return normalized_brightness_matrix
+
 def get_ascii_matrix(brightness_matrix):
     ascii_matrix=[]
     for i in brightness_matrix:
         ascii_row=[]
         for j in i:
-            ascii_row.append(CHAR[round(j/(MAX_PIXEL_VALUE/len(CHAR)))-1])
+            ascii_row.append(CHAR[int((j/MAX_PIXEL_VALUE) * len(CHAR)) - 1])
         ascii_matrix.append(ascii_row)
     return ascii_matrix
 
@@ -39,7 +50,8 @@ def main():
     assert os.path.exists(path), "I did not find the file at, "+str(path)
     pixel_matrix = get_pixel_matrix(path)
     brightness_matrix = get_brightness_matrix(pixel_matrix)
-    ascii_matrix = get_ascii_matrix(brightness_matrix)
+    normalized_brightness_matrix= normalize_brightness_matrix(brightness_matrix)
+    ascii_matrix = get_ascii_matrix(normalized_brightness_matrix)
     print_ascii(ascii_matrix)
 
 if __name__=='__main__':
