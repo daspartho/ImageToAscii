@@ -2,7 +2,7 @@ from PIL import Image
 import os
 import argparse
 
-CHAR="`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
+CHAR='$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~i!lI;:,"^`' # reverse this list for brightness inversion
 MAX_PIXEL_VALUE = 255
 
 def get_pixel_matrix(path):
@@ -40,11 +40,14 @@ def get_ascii_matrix(brightness_matrix):
         ascii_matrix.append(ascii_row)
     return ascii_matrix
 
-def print_ascii(ascii_matrix):
+def write_ascii(ascii_matrix):
+    file=open('output.txt', 'w')
     for i in ascii_matrix:
         for j in i:
-            print(j*2, end='')
-        print()
+            file.write(j * 2)
+        file.write('\n')
+    file.close()
+
 
 def get_path():
     parser = argparse.ArgumentParser()
@@ -59,7 +62,8 @@ def main():
     brightness_matrix = get_brightness_matrix(pixel_matrix)
     normalized_brightness_matrix= normalize_brightness_matrix(brightness_matrix)
     ascii_matrix = get_ascii_matrix(normalized_brightness_matrix)
-    print_ascii(ascii_matrix)
+    write_ascii(ascii_matrix)
+    os.startfile('output.txt')
 
 if __name__=='__main__':
     main()
