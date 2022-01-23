@@ -26,9 +26,14 @@ python main.py <image file path>
 ```
 
 ## Example
-```
-python main.py test.jpg
-```
+
+### image file
+![test image](img.jpg)
+
+### output text file
+![output text file](output.png)
+
+Note: The text file produced may be quite large, to see the whole ASCII image try zooming out or reduce font size.
 
 ## Contributing
 If you want to contribute code, just write a quick pull request and the developers will take a look at it.
