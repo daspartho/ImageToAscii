@@ -12,7 +12,7 @@ git clone https://github.com/daspartho/ImageToAscii.git
 ```
 - Then, change your current directory into the ImageToAscii repository.
 ```
-cd SpotiByeAds
+cd ImageToAscii
 ```
 - Finally, install Pillow Library
 ```
