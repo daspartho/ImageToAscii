@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+import argparse
 
 CHAR="`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 MAX_PIXEL_VALUE = 255
@@ -45,8 +46,14 @@ def print_ascii(ascii_matrix):
             print(j*2, end='')
         print()
 
-def main():
-    path = input("Enter the path of your file: ")
+def get_path():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('path', help='image file path?')
+    arg = parser.parse_args()
+    return arg.path
+
+def main(): 
+    path = get_path()
     assert os.path.exists(path), "I did not find the file at, "+str(path)
     pixel_matrix = get_pixel_matrix(path)
     brightness_matrix = get_brightness_matrix(pixel_matrix)
